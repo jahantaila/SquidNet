@@ -32,20 +32,14 @@ def update_img(request):
         img = Image.fromarray(transformed, "RGB")
         img.save('main/static/images/outputs/outputimg.png')
         context = {'image_path': 'main/static/images/outputs/outputimg.png'}
-        return render(request, 'image.html', context)
     return HttpResponse("success")
 
 
-logger = logging.getLogger(__name__)
-
-logger = logging.getLogger(__name__)
-
 @csrf_exempt
 def post_img(request):
-    image_path = "main/static/images/outputs/outputimg.png"
-    with open(image_path, 'rb') as f:
-            image_data = f.read()
-            return HttpResponse(image_data, content_type="image/png")
+    image_path = "/main/static/images/outputs/outputimg.png"
+    context = {'image_path': image_path}
+    return render(request, 'image.html', context)
 
     
 
